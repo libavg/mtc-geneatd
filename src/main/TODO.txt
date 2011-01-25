@@ -1,0 +1,4 @@
+TODO:
+
+- improve fading animation before and after game.
+- use new libavg feature to get screen resolution.
