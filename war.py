@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #geneaTD - A multi-touch tower defense game.
 #Copyright (C) 2010-2011 Frederic Kerber, Pascal Lessel, Michael Mauderer 
 #
