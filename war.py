@@ -61,7 +61,8 @@ eventStartTimes = {}
 # time span between item appearance
 itemTimerTime = 2000
 
-
+# indicates whether we run standalone
+standAlone = False
 
 # action layer
 actionLayer = avg.DivNode(id="actionLayer", size=(util.width, util.height), pos=(0,0))
@@ -94,6 +95,11 @@ class Main(AVGApp):
         super(Main, self).__init__(parentNode)
 
 
+    def ownLeave(self):
+        if standAlone:
+            g_player.stop()
+        else:
+            self.leave()
 
     def init(self):
         self._gameOver = True        
@@ -1247,5 +1253,6 @@ class Main(AVGApp):
 if __name__ == '__main__':
     width = avg.Player.get().getScreenResolution().x
     height = avg.Player.get().getScreenResolution().y
+    standAlone = True
     Main.start(resolution=(width,height))
 

@@ -525,8 +525,8 @@ class MainMenu(object):
         """
         self.soundPlayer.playTune(buttonSound)
         self.parentNode.unlink(False)
-        #self.main.leave()
-        self.player.stop()
+        self.main.ownLeave()
+        
    
    
     def unlinkAll(self):
