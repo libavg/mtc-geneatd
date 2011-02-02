@@ -331,8 +331,8 @@ class Keyboard(object):
 
         if showPlayer1:
             self.divLeftAppended = True
-            self.divLeft = avg.DivNode(pos=(0,0), size=(util.halfwidth, util.height), parent=parentNode)
-            self.keyBoardDivLeft = avg.DivNode(pos=(0,0), opacity=0, size=(util.halfwidth // 3*2, util.height), parent=self.divLeft)
+            self.divLeft = avg.DivNode(pos=(0,0), opacity=0, size=(util.halfwidth, util.height), parent=parentNode)
+            self.keyBoardDivLeft = avg.DivNode(pos=(0,0), size=(util.halfwidth // 3*2, util.height), parent=self.divLeft)
             i=0
             for char in unicode("qwertyuiop"):
                 placeKeyNode(self.keyBoardDivLeft, util.width//40*9, (util.height//50 + i * (util.keyHeight+keySpacing)), math.pi/2, char, 1)
