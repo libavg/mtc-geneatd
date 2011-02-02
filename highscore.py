@@ -53,8 +53,6 @@ class Highscore(object):
         self._length = length
         self.readHighscore()
         
-    def __del__(self):
-        pass
     
     def readHighscore(self):
         

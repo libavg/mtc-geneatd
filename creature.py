@@ -77,6 +77,9 @@ class Creature(object):
             self.creatures2.remove(self)
         del Creature.creatures[id(self)]
         del self.runningAnim
+        if (self.freezeTimer is not None):
+            self.player.clearInterval(self.freezeTimer)
+
         self.creatureDiv.unlink(True) 
  
  
@@ -211,6 +214,8 @@ class Creature(object):
         self.when = when 
         self.team = team
         self.i = 0
+        self.freezeTimer = None
+
 
         cid = id(self)
         self.creatureDiv = avg.DivNode(id = str(cid), size = util.creatureDivSize, pos = (pos.x-util.creatureDivSize[0]//2, pos.y-util.creatureDivSize[1]//2), parent=layer)
@@ -239,8 +244,7 @@ class Creature(object):
 
         self.timer = self.player.setInterval(500, self._hitPointTimer)
 
-        
-    
+            
     def _getR(self):
         """
         Getter for the radius of libAVG node.
@@ -294,32 +298,33 @@ class Creature(object):
         """
         Starts the linear running anim after a freezing.
         """
-        if self.team.id==1:
-            if self.pos.x <=util.basewidth:
-                self.targetX=util.basewidth
-                stopAnim = self._switchToInActiveLayer
-            elif self.pos.x <=util.halfwidth:
-                self.targetX=util.halfwidth
-                stopAnim = self._switchToActiveLayer
+        if not self.state =="DEAD":
+            if self.team.id==1:
+                if self.pos.x <=util.basewidth:
+                    self.targetX=util.basewidth
+                    stopAnim = self._switchToInActiveLayer
+                elif self.pos.x <=util.halfwidth:
+                    self.targetX=util.halfwidth
+                    stopAnim = self._switchToActiveLayer
+                else:
+                    self.targetX= self.team.targetX-(2*self.creature.r if self.team.direction==1 else 0)
+                    stopAnim = self._runningStopped
             else:
-                self.targetX= self.team.targetX-(2*self.creature.r if self.team.direction==1 else 0)
-                stopAnim = self._runningStopped
-        else:
-            if self.pos.x >=util.rightBasePos[0]-self.creatureDiv.size.x:
-                self.targetX=util.rightBasePos[0]-self.creatureDiv.size.x
-                stopAnim = self._switchToInActiveLayer
-            elif self.pos.x>=util.halfwidth:
-                self.targetX=util.halfwidth
-                stopAnim = self._switchToActiveLayer
-            else:
-                self.targetX= self.team.targetX-(2*self.creature.r if self.team.direction==1 else 0)
-                stopAnim = self._runningStopped
-            
-            
-            
-        self.player.clearInterval(self.freezeTimer)
-        self.runningAnim = avg.LinearAnim(self.creatureDiv, "pos", self._calcTime(), (self.pos.x,self.pos.y), (self.targetX,self.pos.y),False, None, stopAnim)            
-        self.runningAnim.start()
+                if self.pos.x >=util.rightBasePos[0]-self.creatureDiv.size.x:
+                    self.targetX=util.rightBasePos[0]-self.creatureDiv.size.x
+                    stopAnim = self._switchToInActiveLayer
+                elif self.pos.x>=util.halfwidth:
+                    self.targetX=util.halfwidth
+                    stopAnim = self._switchToActiveLayer
+                else:
+                    self.targetX= self.team.targetX-(2*self.creature.r if self.team.direction==1 else 0)
+                    stopAnim = self._runningStopped
+                
+                
+                
+            self.player.clearInterval(self.freezeTimer)
+            self.runningAnim = avg.LinearAnim(self.creatureDiv, "pos", self._calcTime(), (self.pos.x,self.pos.y), (self.targetX,self.pos.y),False, None, stopAnim)            
+            self.runningAnim.start()
         
         
     def freeze(self, time):

@@ -30,7 +30,9 @@ class HP(object):
 
         self._anim.start()
         self.hp= number
-        
+    
+    def __del__(self):
+        self._anim.abort()
         
     def _getHP(self):
         return self._hp
@@ -46,8 +48,8 @@ class HP(object):
             self._hp = number
             self._node.href = os.path.join(getMediaDir(__file__, "resources"), "hp/" + str(self._hp) + ".png")
             
-        
-        
+
+                
     def hide(self):
         self._node.opacity = 0
         
