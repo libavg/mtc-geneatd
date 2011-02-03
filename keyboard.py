@@ -10,11 +10,11 @@
 #
 #This program is distributed in the hope that it will be useful,
 #but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #GNU General Public License for more details.
 #
 #You should have received a copy of the GNU General Public License
-#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 #For more information contact the geneaTD team: info@geneatd.de
 #
@@ -87,9 +87,12 @@ class Keyboard(object):
             Method is called if one clicks on the back button in highscore menu.
             """
             self.back.unlink(True)
+            self.back = None
             self.highscore.hide()
             self.left.unlink(True)
+            self.left = None
             self.right.unlink(True)
+            self.right = None
             MainMenu(parentNode, g_player, self.main)
 
         
@@ -111,12 +114,12 @@ class Keyboard(object):
             self.back.setEventHandler(avg.CURSOROUT, avg.TOUCH or avg.MOUSE, lambda event : glow(event, self.back));
            
             avg.LinearAnim(self.back, "pos", 1000, self.back.pos, (util.width // 600 , self.back.pos.y)).start()
-            #highscoreDiv.opacity = 0
             avg.fadeIn(highscoreDiv, 3000)
 
         self.main.victoryLeft.unlink(True)
         self.main.victoryRight.unlink(True)
-
+        self.main.victoryLeft = None
+        self.main.victoryRight = None
         
         def keyUp(char, id):
             node = g_player.getElementByID(str(id))
@@ -173,14 +176,33 @@ class Keyboard(object):
             if (self.up1 and self.up2 and not self.highscoreComingUp2):
 
                 self.highscoreComingUp2=True
-                
+                  
+                 
                 if self.divLeftAppended:
                     self.divLeft.unlink(True)
+                    self.divLeft = None
+                    self.keyBoardDivLeft = None
+                    self.player1TextDiv = None
+                    self.player1Box = None
+                    self.player1Text = None
+                    global shiftNode_left
+                    shiftNode_left = None
                 if self.divRightAppended:
                     self.divRight.unlink(True)
-                
+                    self.divRight = None
+                    self.keyBoardDivRight = None
+                    self.player2TextDiv = None
+                    self.player2Box = None
+                    self.player2Text = None
+                    global shiftNode_right
+                    shiftNode_right = None
+                                     
+                global keys_left
+                global keys_right
+                keys_left = []
+                keys_right = []
                 highscoreDiv = avg.DivNode(pos=(0,0), opacity=0, size=(util.width, util.height))
-                
+                  
                 self.highscore.show(highscoreDiv)
                 
                 
@@ -401,4 +423,4 @@ class Keyboard(object):
             shift(2)
             
             avg.fadeIn(self.divRight, 3000)
-
+            

@@ -254,7 +254,6 @@ def startCloudFadeIn(parentNode, endAction=None):
     ca1 = avg.LinearAnim(__c1, "pos", 4000, __c1.pos, (0,0)                                   ,False, None, lambda: __deactivateNode(__c1))
     ca2 = avg.LinearAnim(__c2, "pos", 4000, __c2.pos, (0,0)                                   ,False, None, lambda: __deactivateNode(__c2))
     ca3 = avg.LinearAnim(__c3, "pos", 4000, __c3.pos, (-parentNode.width ,-parentNode.height ),False, None, lambda: __deactivateNode(__c3))
-    #ca3 = avg.WaitAnim(1000, None, ca3.start)
     ca4 = avg.LinearAnim(__c4, "pos", 4000, __c4.pos, (0 ,0 - parentNode.height )             ,False, None ,lambda: __deactivateNode(__c4))
     
     ra2 = avg.LinearAnim(__old, "opacity", 4000, 1, 0 ,False, None,lambda: __deactivateNode(__old))
@@ -273,8 +272,6 @@ def startCloudFadeIn(parentNode, endAction=None):
 def startCloudFadeIn2(parentNode, endAction=None):
      
     __activateNode(parentNode,__new )
-    #__activateNode(parentNode,__c1 )
-    #__activateNode(parentNode,__c2 )
     __activateNode(parentNode,__c3 )
     __activateNode(parentNode,__c4 )
     __activateNode(parentNode,__old )
@@ -305,7 +302,6 @@ def startCloudFadeIn2(parentNode, endAction=None):
     ca3 = avg.LinearAnim(__c3, "pos", 10000, __c3.pos, (-parentNode.width ,-parentNode.height ),False, None, lambda: __deactivateNode(__c3))
     ca32 = avg.LinearAnim(__c3, "size", 10000, __c3.size, (parentNode.width*3 ,parentNode.height*3 ))
    
-    #ca3 = avg.WaitAnim(1000, None, ca3.start)
     ca4 = avg.LinearAnim(__c4, "pos", 10000, __c4.pos, (-2*parentNode.width ,-2*parentNode.height )             ,False, None ,lambda: __deactivateNode(__c4))
     ca41 = avg.LinearAnim(__c4, "size", 10000, __c4.size, (5*parentNode.width ,5*parentNode.height ))
     
@@ -337,10 +333,8 @@ def startCloudFadeIn2(parentNode, endAction=None):
 
        
     
-    #avg.fadeIn(place, 6000, lambda: textAnim(place))
     avg.fadeOut(__c1, 2000, textAnim)
     avg.fadeOut(__c2, 8000 )
-    #lambda: avg.fadeIn(__c2, 3000, lambda: avg.fadeOut(__c2, 2000)
     avg.fadeOut(__c3, 10000, lambda: __deactivateNode(__new))
     avg.fadeOut(__c4, 10000, endAction)
     
@@ -378,7 +372,6 @@ def startCloudFadeOut(parentNode, endAction=None):
     ca1 = avg.LinearAnim(__c1, "pos", 4000, (0,0), __c1.pos                                    ,False, None, lambda: __deactivateNode(__c1))
     ca2 = avg.LinearAnim(__c2, "pos", 4000, (0,0) , __c2.pos                                   ,False, None, lambda: __deactivateNode(__c2))
     ca3 = avg.LinearAnim(__c3, "pos", 4000, (-parentNode.width ,-parentNode.height ), __c3.pos,False, None, lambda: __deactivateNode(__c3))
-    #ca3 = avg.WaitAnim(1000, None, ca3.start)
     ca4 = avg.LinearAnim(__c4, "pos", 4000,(0 ,0 - parentNode.height ) , __c4.pos             ,False, None ,lambda: __deactivateNode(__c4))
     
     ra2 = avg.LinearAnim(__new, "opacity", 4000, 1, 0 ,False, None,lambda: __deactivateNode(__new))
@@ -396,8 +389,6 @@ def startCloudFadeOut(parentNode, endAction=None):
 def startCloudFadeOut2(parentNode, endAction=None):
      
     __activateNode(parentNode,__old )
-    #__activateNode(parentNode,__c1 )
-    #__activateNode(parentNode,__c2 )
     __activateNode(parentNode,__c3 )
     __activateNode(parentNode,__c4 )
     __activateNode(parentNode,__new )
@@ -426,11 +417,10 @@ def startCloudFadeOut2(parentNode, endAction=None):
     ca1 = avg.LinearAnim(__c1, "pos", 10000, (0,0), __c1.pos                                    ,False, None, lambda: __deactivateNode(__c1))
     ca2 = avg.LinearAnim(__c2, "pos", 10000, (0,0), __c2.pos                                   ,False, None, lambda: __deactivateNode(__c2))
     ca3 = avg.LinearAnim(__c3, "pos", 10000, (-parentNode.width ,-parentNode.height ),__c3.pos,False, None, lambda: __deactivateNode(__c3))
-    ca32 = avg.LinearAnim(__c3, "size", 10000, (parentNode.width*3 ,parentNode.height*3 ), __c3.size,False, None, None)
+    ca32 = avg.LinearAnim(__c3, "size", 10000, (parentNode.width*3 ,parentNode.height*3 ), __c3.size)
    
-    #ca3 = avg.WaitAnim(1000, None, ca3.start)
     ca4 = avg.LinearAnim(__c4, "pos", 10000, (-2*parentNode.width ,-2*parentNode.height ),__c4.pos             ,False, None ,lambda: __deactivateNode(__c4))
-    ca41 = avg.LinearAnim(__c4, "size", 10000, (5*parentNode.width ,5*parentNode.height ), __c4.size             ,False, None)
+    ca41 = avg.LinearAnim(__c4, "size", 10000, (5*parentNode.width ,5*parentNode.height ), __c4.size)
     
     ra2 = avg.LinearAnim(__new, "opacity", 5000, 1, 0 ,False, None,lambda: __deactivateNode(__new))
     
@@ -442,10 +432,8 @@ def startCloudFadeOut2(parentNode, endAction=None):
     ca4.start()
     ca41.start()
         
-    #avg.fadeIn(place, 6000, lambda: textAnim(place))
     avg.fadeOut(__c1, 2000)
     avg.fadeOut(__c2, 8000 )
-    #lambda: avg.fadeIn(__c2, 3000, lambda: avg.fadeOut(__c2, 2000)
     avg.fadeOut(__c3, 10000, lambda: __deactivateNode(__old))
     avg.fadeOut(__c4, 10000, endAction)
     

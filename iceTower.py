@@ -31,8 +31,6 @@ class IceTower(Tower):
     This class represents an ice tower object.
     """
     
-    #List of all snow ball animation of this tower.
-    
     snowballTime = 5000
     freezeDuration = 5000
     

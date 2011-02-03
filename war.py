@@ -823,7 +823,6 @@ class Main(AVGApp):
                 else:
                     anim.setStopCallback(None)
                     anim.abort()
-                    # Action ausfuehren
                     
                 circle.unlink(True)
                 del eventStartTimes[event.cursorid]
@@ -1159,7 +1158,6 @@ class Main(AVGApp):
      
         Keyboard(self.parentNode, self.team1.score>=lowestEntry, self.team2.score>=lowestEntry, self.highscore, (self.team1.score, self.team2.score), self)
  
-        #avg.LinearAnim(g_player.getRootNode(),"opacity", 3000, 0.3, 1).start()
         self.parentNode.sensitive=True
         
        
@@ -1231,16 +1229,14 @@ class Main(AVGApp):
                 if (child is not self.field):
                     avg.fadeOut(child, 1000)
             g_player.setTimeout(1000, lambda: util.startCloudFadeOut2(self.parentNode,self.showKeyboard ))         
-            #avg.fadeOut(self.parentNode, 1000, lambda: util.startCloudFadeOut2(self.parentNode,self.showKeyboard ))
-            #util.startCloudFadeOut2(self.parentNode,self.showKeyboard )
+
 
         avg.LinearAnim(self.victoryWordsLeft,"opacity", 9000, 0, 1).start()
         avg.LinearAnim(self.victoryWordsRight,"opacity", 9000, 0, 1).start()
         avg.LinearAnim(self.victoryScoreLeft,"opacity", 9000, 0, 1).start()
         avg.LinearAnim(self.victoryScoreRight,"opacity", 9000, 0, 1, False, None, test).start()
 
-        #avg.LinearAnim(self.overallField,"opacity", 12000, 1, 0.3, False, None, self.showKeyboard).start()
-        #util.startCloudFadeOut2(self.parentNode,self.showKeyboard )    
+  
         
             
         

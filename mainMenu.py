@@ -278,48 +278,6 @@ class MainMenu(object):
         avg.LinearAnim(self.header, "opacity", 1200, self.header.opacity, 1.0).start()
       
     
-    
-    def timer(self):
-        """
-        Method is called by a timer each second.
-        """
-        if (self.i == 6):
-            self.place = avg.WordsNode(font="DejaVu Sans", variant="Bold", fontsize=util.convertFontSize(32), pivot = (0, 0), color = "FFFFFF", text = "Take your side now!", parent=self.parentNode)
-            self.place.pos = ((util.width-self.place.getMediaSize()[0])//2, util.height //8)
-
-        elif (self.i == 3):
-            avg.LinearAnim(self.place, "angle", 1500, 0, math.pi / 2).start()
-            avg.LinearAnim(self.place, "pos", 1500, (self.place.pos), (self.place.pos.x, util.height//2-self.place.getMediaSize()[0]//2)).start()
-            
-            self.place2 = avg.WordsNode(font="DejaVu Sans", variant="Bold", fontsize=util.convertFontSize(32), color = "FFFFFF", text = "Take your side now!", parent=self.parentNode)
-            self.place2.pivot = (self.place2.getMediaSize()[0], 0)
-            self.place2.pos = (util.width // 2 - util.width//8, util.height//8)
-
-            avg.LinearAnim(self.place2, "angle", 1500, 0, -math.pi / 2).start()
-            avg.LinearAnim(self.place2, "pos", 1500, (self.place.pos), (self.place.pos.x, util.height//2-self.place.getMediaSize()[0]//2)).start()
-        
-        elif (self.i < 2):
-            self.player.clearInterval(self.timerX)
-            self.parentNode.sensitive = True
-            self.place.unlink(True)
-            self.place2.unlink(True)
-            self.time.unlink(True)
-            self.main.initGame(self.parentNode,self.highscore, self.gameTime, self.gamePoints)       
-            
-        self.i -= 1
-        self.time.text = "%02i" % self.i
-
-
-    
-#    def moveSidesToStartGame(self):
-#        """
-#        Method moves the sides out of the screen and unlinks the buttons. Is called after start-click.
-#        """       
-#        self.pointDiv.unlink(True)
-#        avg.LinearAnim(self.left, "pos", 1000, (0, 0), (-(util.width // 2), 0)).start()
-#        avg.LinearAnim(self.right, "pos", 1000, (util.width // 2, 0), (util.width, 0), False, None, self.introGame).start()
-
- 
     def introGame(self):
         """
         Method is called if the sides are out of the screen.
@@ -353,7 +311,24 @@ class MainMenu(object):
             self.timeInf.sensitive = False
             self.gameTime = time;
             
+            self.time5.unlink(True)
+            self.time10.unlink(True)
+            self.time15.unlink(True)
+            self.time30.unlink(True)
+            self.timeInf.unlink(True)
+           
             self.timeDiv.unlink(True)
+            self.text.unlink(True)
+           
+            self.time5 = None
+            self.time10 = None
+            self.time15 = None
+            self.time30 = None
+            self.timeInf = None
+           
+            self.timeDiv = None
+            self.text = None
+
             self.showPointMenu()
         
     
@@ -492,12 +467,48 @@ class MainMenu(object):
         self.content.unlink(True)
         self.contentLeft.unlink(True)
         self.contentRight.unlink(True)
-        
-        avg.LinearAnim(self.hback, "opacity",1000, self.hback.opacity, 0.0, False, None, lambda: self.hback.unlink(True)).start()
-        avg.LinearAnim(self.hforward, "opacity",1000, self.hforward.opacity, 0.0, False, None, lambda: self.hforward.unlink(True)).start()
-        avg.LinearAnim(self.helpDiv, "opacity",1000, self.helpDiv.opacity, 0.0, False, None, lambda: self.killDivAndMoveMenuIn(self.helpDiv)).start()
+        self.contentCentered.unlink(True)
+        self.contentCenteredRight.unlink(True)
+        self.contentCenteredLeft.unlink(True)
+        self.text.unlink(True)        
+       
+        self.text = None
+        self.innerHelpDiv = None
+        self.backgroundRect = None
+        self.itemIMG = None
+        self.content = None
+        self.contentCentered = None
+        self.imageDiv = None
+        self.imageOnBack = None
+        self.innerHelpDivRight = None
+        self.backgroundRectRect = None
+        self.itemIMGRight = None
+        self.contentRight = None
+        self.contentCenteredRight = None
+        self.imageDivRight = None
+        self.imageOnBackRight = None
+        self.innerHelpDivLeft = None
+        self.backgroundRectLeft = None
+        self.itemIMGLeft = None
+        self.contentLeft = None
+        self.contentCenteredLeft = None
+        self.imageDivLeft = None
+        self.imageOnBackLeft = None
 
-   
+     
+        self.dragDiv = None
+       
+        def killhBackForward():
+            self.hback.unlink(True)
+            self.hback = None
+            self.hforward.unlink(True)
+            self.hforward = None
+          
+        avg.LinearAnim(self.hback, "opacity",1000, self.hback.opacity, 0.0).start()
+        avg.LinearAnim(self.hforward, "opacity",1000, self.hforward.opacity, 0.0, False, None, killhBackForward).start()
+        avg.LinearAnim(self.helpDiv, "opacity",1000, self.helpDiv.opacity, 0.0, False, None, lambda: self.killDivAndMoveMenuIn(self.helpDiv)).start()       
+       
+  
    
     def fromTimeMenu(self, event, div):
         """
@@ -507,6 +518,26 @@ class MainMenu(object):
         self.soundPlayer.playTune(buttonSound)
         self.letBackButtonDisappear()
         
+       
+        self.time5.unlink(True)
+        self.time10.unlink(True)
+        self.time15.unlink(True)
+        self.time30.unlink(True)
+        self.timeInf.unlink(True)
+       
+        self.timeDiv.unlink(True)
+        self.text.unlink(True)
+       
+        self.time5 = None
+        self.time10 = None
+        self.time15 = None
+        self.time30 = None
+        self.timeInf = None
+       
+        self.timeDiv = None
+        self.text = None
+
+       
         avg.LinearAnim(div, "opacity",1000,div.opacity, 0.0, False, None, lambda: self.killDivAndMoveMenuIn(div)).start()
 
 
@@ -514,6 +545,25 @@ class MainMenu(object):
         """
         Method is called if one clicks in the point submenu on the back button. The div will be faded out and the time menu comes back.
         """
+       
+        self.points100.unlink(True)
+        self.points200.unlink(True)
+        self.points300.unlink(True)
+        self.points400.unlink(True)
+        self.pointsInf.unlink(True)
+       
+        self.pointDiv.unlink(True)
+        self.text.unlink(True)
+       
+        self.points100 = None
+        self.points200 = None
+        self.points300 = None
+        self.points400 = None
+        self.pointsInf = None
+       
+        self.pointDiv = None
+        self.text = None
+     
         self.soundPlayer.playTune(buttonSound)
         div.unlink(True)
         self.showTimeMenu()
@@ -546,6 +596,7 @@ class MainMenu(object):
             self.mute.unlink(True)
         self.end2.unlink(True)
         self.help2.unlink(True)
+
     def pulsate(self, node):
         node.opacity=abs(math.sin(time.time()))
                 

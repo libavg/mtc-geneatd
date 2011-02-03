@@ -74,8 +74,6 @@ class IndyTower(Tower):
         """
         A setter for the appearance of the tower.
         """
-             
-              
         self.tower = avg.RectNode(fillopacity=1, strokewidth=0, size=util.towerSize, pos=(self.pos.x-util.towerSize[0]//2, self.pos.y-util.towerSize[1]//2),filltexhref = os.path.join(getMediaDir(__file__, "resources"), "fireball.png"))
         
     

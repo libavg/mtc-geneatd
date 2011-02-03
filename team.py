@@ -72,7 +72,7 @@ class Team(object):
         self._exp = 0
         self.score = 0
         self.id = id
-        self.itemCounter = {} # ggf braucht man das nicht.
+        self.itemCounter = {}
         
         
     def appendScoreNodes(self, parentNode):

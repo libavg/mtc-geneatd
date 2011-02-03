@@ -63,11 +63,11 @@ class TowerKillItem(Item):
         """
         
         
-        if (team.id == self.kill): #homebase and kill id the same - no creature will die
+        if (team.id == self.kill):
             team.adjustExp(self.exp)
             self.game.soundPlayer.playTune("soundfiles/sound_item_exp.mp3")
                 
-        else:   #kill die creaturen des anderen spielers.
+        else:
             
             self.game.soundPlayer.playTune("soundfiles/sound_item_towerkill.mp3")
                             
@@ -93,9 +93,9 @@ class TowerKillItem(Item):
         This method should be override for effect.
         Should contain the effect an item has on the GUI when collected.
         """
-        if (team.id == self.kill): #homebase and kill id the same - no tower will be destroyed
+        if (team.id == self.kill):
             return #already down with adjustEXP
-        else:   #kill die creaturen des anderen spielers.
+        else:
             
                      
             self.lightning = avg.RectNode(fillopacity=0.01, strokewidth=0, sensitive=False, size=(util.halfwidth-util.basewidth, util.height-2*util.sideBarheight), parent=self.graphicsLayer)

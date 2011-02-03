@@ -148,6 +148,8 @@ class Highscore(object):
         Hides the highscore
         """
         self.highscoreDiv.unlink(True)
+        self.highscoreDiv = None
+
         
     def getLowestEntry(self):
         if not self.entries or len(self.entries)<self._length:

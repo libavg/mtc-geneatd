@@ -100,7 +100,6 @@ class WizardCreature(Creature):
         This method lets the wizard appear on the new position.
         """
         
-        #self.disappearAnim = None
         if self.state=="RUNNING":
             if self.firstJump:
                 self.firstJump = False
@@ -168,6 +167,3 @@ class WizardCreature(Creature):
         self.freezed=True
         self.freezeTimer = self.player.setInterval(time, self._startMoving) 
         
-
-
-
