@@ -1154,11 +1154,132 @@ class Main(AVGApp):
         self.homeBaseStar32.unlink(True)
         self.homeBaseStar33.unlink(True)
        
+        actionLayer = None
+        creatureLayer = None
+        activeCreatureLayer = None
+        inActiveCreatureLayer = None
+        
+
+        self.overallField = None
+        self.timeBar1=None
+        self.timeBar2=None
+
+        self.expBar1 = None
+        self.expBar2 = None
+        
+        self.itemBunker1Left = None
+        self.itemBunker2Left = None
+
+        self.itemBunker1Right = None
+        self.itemBunker2Right = None
+        
+        
+        self.field = None
+        
+         
+        self.player1Field = None
+        self.player2Field = None
+
+        self.homeBaseStar1 = None
+        self.homeBaseStar21 = None
+        self.homeBaseStar22 = None
+        self.homeBaseStar31 = None
+        self.homeBaseStar32 = None
+        self.homeBaseStar33 = None
+        
+        self.homeBaseNode = None
+        self.homeBaseImg = None
+        
+
+        self.homeBase2Star1 = None
+        self.homeBase2Star21 = None
+        self.homeBase2Star22 = None
+        self.homeBase2Star31 = None
+        self.homeBase2Star32 = None
+        self.homeBase2Star33 = None
+        
+        
+        self.homeBaseNode2 = None
+        self.homeBaseImg2 = None
+
+        self.middleLine = None
+
+
+        self.player1OptionsLeft = None
+
+        self.player1OptionsLeftWizardBack = None
+        self.player1OptionsLeftWizard = None
+         
+        self.player1OptionsLeftScoutBack = None
+        self.player1OptionsLeftScout = None    
+        
+        self.player1OptionsLeftNormalBack = None
+        self.player1OptionsLeftNormal = None      
+          
+        self.hoverCreaturePlayer1 = None
+        
+        self.player1OptionsRight = None
+
+        self.player1OptionsRightIndyBack = None
+        self.player1OptionsRightIndy = None
+                       
+        self.player1OptionsRightIceBack = None
+        self.player1OptionsRightIce = None
+        
+        self.player1OptionsRightNormalBack = None
+        self.player1OptionsRightNormal = None
+        
+        self.hoverTowerPlayer1 = None
+
+        self.player2OptionsLeft = None
+
+        
+
+        self.player2OptionsLeftNormalBack = None
+        self.player2OptionsLeftNormal = None
+        
+
+        self.player2OptionsLeftScoutBack = None
+        self.player2OptionsLeftScout = None 
+        
+       
+
+        self.player2OptionsLeftWizardBack = None
+        self.player2OptionsLeftWizard = None
+        
+        self.hoverCreaturePlayer2 = None
+
+        self.player2OptionsRight = None
+        self.player2OptionsRightNormalBack = None
+        self.player2OptionsRightNormal = None
+       
+
+        self.player2OptionsRightIceBack = None
+        self.player2OptionsRightIce = None
+
+        self.player2OptionsRightIndyBack = None
+        self.player2OptionsRightIndy = None
+
+
+        
+        self.hoverTowerPlayer2 = None
+        g_player.clearInterval(self.itemTimer)
+        
+        
+        self.victoryScoreLeft =   None 
+        self.victoryScoreRight =  None
+        self.victoryWordsLeft = None
+        self.victoryWordsRight = None
+
+
+       
         lowestEntry = (int) (self.highscore.getLowestEntry())
      
         Keyboard(self.parentNode, self.team1.score>=lowestEntry, self.team2.score>=lowestEntry, self.highscore, (self.team1.score, self.team2.score), self)
  
         self.parentNode.sensitive=True
+        self.team1 = None
+        self.team2 = None
         
        
     
