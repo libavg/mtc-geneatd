@@ -99,9 +99,11 @@ class Main(AVGApp):
         if standAlone:
             g_player.stop()
         else:
+            util.clear()
             self.leave()
 
     def init(self):
+        util.init()
         self._gameOver = True        
         self.parentNode = avg.DivNode(size=(self._parentNode.size.x, self._parentNode.size.y), pos=(0,0), parent= self._parentNode)
 

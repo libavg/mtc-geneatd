@@ -437,7 +437,26 @@ def startCloudFadeOut2(parentNode, endAction=None):
     avg.fadeOut(__c3, 10000, lambda: __deactivateNode(__old))
     avg.fadeOut(__c4, 10000, endAction)
     
-    
 
+def clear():
+    global __new, __c1, __c2, __c3, __c4,__old
+
+    __new = None
+    __c1 =  None
+    __c2 =  None
+    __c3 =  None
+    __c4 =  None
+    __old = None    
+    
+def init():
+    global __new, __c1, __c2, __c3, __c4,__old
+
+    __new = avg.ImageNode(id="p2", opacity=1, href=os.path.join(getMediaDir(__file__, "resources"), "backgroundHRes.jpg"), pos=(0,0) )              
+    __c1 =  avg.ImageNode(id="c1", opacity=1, href=os.path.join(getMediaDir(__file__, "resources"), "c1.png")) 
+    __c2 =  avg.ImageNode(id="c2", opacity=1, href=os.path.join(getMediaDir(__file__, "resources"), "c2.png"))
+    __c3 =  avg.ImageNode(id="c3", opacity=1, href=os.path.join(getMediaDir(__file__, "resources"), "c3.png"))
+    __c4 =  avg.ImageNode(id="c4", opacity=1, href=os.path.join(getMediaDir(__file__, "resources"), "c4.png"))        
+    __old = avg.ImageNode(id="p1", opacity=1, href=os.path.join(getMediaDir(__file__, "resources"), "MainBackground.jpg"), pos=(0,0))
+          
 
     
