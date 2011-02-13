@@ -77,7 +77,7 @@ inActiveCreatureLayer = avg.DivNode(id="inActiveCreatureLayer", size=(util.width
 
 
 
-class Main(AVGApp):   
+class GeneaTD(gameapp.GameApp):   
     """
     The main class.
     """
@@ -92,7 +92,7 @@ class Main(AVGApp):
         parser.add_option("-m", "--nosound", action="store_true", dest="nosound")
         (optionen, args) = parser.parse_args()
         self.musicEnabled = not optionen.nosound
-        super(Main, self).__init__(parentNode)
+        super(GeneaTD, self).__init__(parentNode)
 
 
     def ownLeave(self):
@@ -1373,5 +1373,5 @@ if __name__ == '__main__':
     width = avg.Player.get().getScreenResolution().x
     height = avg.Player.get().getScreenResolution().y
     standAlone = True
-    Main.start(resolution=(width,height))
+    GeneaTD.start(resolution=(width,height))
 
