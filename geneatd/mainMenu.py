@@ -947,6 +947,7 @@ class MainMenu(object):
                     University of Saarland<br/></small>
                     <br/>
                     GeneaTD is based on libavg (www.libavg.de)<br/>"""
+            contentCentered.pos = (self.innerHelpDiv.size.x//2,self.innerHelpDiv.size.y -content.getMediaSize().y - contentCentered.getMediaSize().y)
             contentCentered.y = util.height*0.07
            
 #            itemIMG.size = (self.innerHelpDiv.size[0]+util.width//15,util.height // 20*14)
