@@ -757,7 +757,7 @@ class MainMenu(object):
 
         self.itemIMG = avg.ImageNode(id="items", sensitive=False, href= os.path.join(getMediaDir(__file__, "resources"), "labels/items.png"), size = (self.innerHelpDiv.size[0],util.height // 20*9), pos  = (0,0), opacity = 0.0, parent=self.innerHelpDiv)
         
-        self.content = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width // 5*3, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDiv.size[0]-util.width // 5*3)//2,util.height//80), parent=self.innerHelpDiv)
+        self.content = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width*0.55, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(22,42), pos = ((self.innerHelpDiv.size[0]-util.width*0.55)//2,util.height*0.07), parent=self.innerHelpDiv)
         self.contentCentered = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width // 5*3, justify = True, alignment="center", color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDiv.size[0]-util.width // 5*3)//2,util.height//80), parent=self.innerHelpDiv)
         
          
@@ -775,7 +775,7 @@ class MainMenu(object):
         
         self.itemIMGRight = avg.ImageNode(id="itemsRight", sensitive = False, href = os.path.join(getMediaDir(__file__, "resources"), "labels/items.png"), size = (self.innerHelpDiv.size[0],util.height // 20*9), pos=(util.width // 24,util.height//25), opacity = 0.0, parent=self.innerHelpDivRight)
 
-        self.contentRight = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width//5*3, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivRight.size[0]-util.width//5*3)//2,util.height // 80), parent=self.innerHelpDivRight)
+        self.contentRight = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width*0.55, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(22,42), pos = ((self.innerHelpDivRight.size[0]-util.width*0.55)//2,util.height*0.07), parent=self.innerHelpDivRight)
         self.contentCenteredRight = avg.WordsNode(font="DejaVu Sans", alignment="center", variant="Book", width = util.width//5*3, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivRight.size[0]-util.width//5*3)//2,util.height // 80), parent=self.innerHelpDivRight)
 
 
@@ -795,7 +795,7 @@ class MainMenu(object):
         self.itemIMGLeft = avg.ImageNode(id="itemsLeft", sensitive = False, href = os.path.join(getMediaDir(__file__, "resources"), "labels/items.png"), size = (self.innerHelpDiv.size[0],util.height // 20*9), pos  = (util.width//24,util.height//25), opacity = 0.0, parent=self.innerHelpDivLeft)
         
                            
-        self.contentLeft = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width // 5*3, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivLeft.size[0]-util.width // 5*3)//2,util.height // 80), parent=self.innerHelpDivLeft)
+        self.contentLeft = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width*0.55, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivLeft.size[0]-util.width*0.55)//2,util.height*0.07), parent=self.innerHelpDivLeft)
         self.contentCenteredLeft = avg.WordsNode(font="DejaVu Sans", alignment="center", variant="Book", width = util.width // 5*3, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivLeft.size[0]-util.width // 5*3)//2,util.height // 80), parent=self.innerHelpDivLeft)
 
         self.imageDivLeft = avg.DivNode(id="imageDivLeft", size = (util.height//8, util.height //8), pos = (self.innerHelpDiv.size[0]//2 - self.imageDiv.size.x//2,util.height//2), opacity = 0.0, parent=self.innerHelpDivLeft)
@@ -847,7 +847,7 @@ class MainMenu(object):
             text1 = "GeneaTD is a multi-touch tower defense game for two to four players. The goal is to earn points by increasing the number of creatures that reach your opponent's home base, whilst your opponent defends his area."
             text2 = " This can be done by touching creatures, or by building towers and touching them again so that they explode and destroy the enemy creatures. "
             text3 = " During the game you earn points for building towers, collecting items and spawning or destroying creatures. After collecting enough special items you receive a 'level up' and can use new creatures, towers or skills as described on the following pages. The game ends after a player reaches a set amount of points or after the time limit has been reached. When playing the 'quick start' mode, the goal is to reach 200 points. "
-            content.text = text1+text2+text3
+            content.text = text1+"<br/><br/>"+text2+"<br/><br/>"+text3
             itemIMG.opacity = 0.0 
             contentCentered.opacity = 0.0 
             
