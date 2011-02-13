@@ -770,8 +770,8 @@ class GeneaTD(gameapp.GameApp):
             if (event.node.id == "player1Field" and not self.team1TowerBlock and util.sideBarheight<event.pos.y<util.height-util.sideBarheight):
                 creationCircle = avg.CircleNode(fillopacity=0.3, strokewidth=0, pos=event.pos, parent=actionLayer)
                 
-                creationCircle.setEventHandler(avg.CURSORUP,avg.TOUCH or avg.MOUSE, createActionUp); 
-                creationCircle.setEventHandler(avg.CURSOROUT,avg.TOUCH or avg.MOUSE, createActionUp); 
+                creationCircle.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, createActionUp); 
+                creationCircle.setEventHandler(avg.CURSOROUT,avg.TOUCH | avg.MOUSE, createActionUp); 
     
                 anim = avg.LinearAnim(creationCircle,"r", towerCreationTime, util.creationCircleRadius//6, util.creationCircleRadius, False, None, lambda : createActionUp(event))
                 anim.start()
@@ -781,8 +781,8 @@ class GeneaTD(gameapp.GameApp):
             if event.node.id == "player2Field" and not self.team2TowerBlock and util.sideBarheight<event.pos.y<util.height-util.sideBarheight:
                 
                 creationCircle = avg.CircleNode(fillopacity=0.3, strokewidth=0, pos=event.pos, parent=actionLayer)
-                creationCircle.setEventHandler(avg.CURSORUP,avg.TOUCH or avg.MOUSE, createActionUp); 
-                creationCircle.setEventHandler(avg.CURSOROUT,avg.TOUCH or avg.MOUSE, createActionUp); 
+                creationCircle.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, createActionUp); 
+                creationCircle.setEventHandler(avg.CURSOROUT,avg.TOUCH | avg.MOUSE, createActionUp); 
     
                 anim = avg.LinearAnim(creationCircle,"r", towerCreationTime, util.creationCircleRadius // 6, util.creationCircleRadius, False, None, lambda : createActionUp(event))
                 anim.start()
@@ -837,13 +837,13 @@ class GeneaTD(gameapp.GameApp):
          
         self.player1Field = avg.DivNode(id="player1Field", pos=(0,0), size=(((util.width-util.middleLinewidth)/2),util.height))
 
-        self.player1Field.setEventHandler(avg.CURSORDOWN,avg.TOUCH or avg.MOUSE, createActionDown);
-        self.player1Field.setEventHandler(avg.CURSORUP,avg.TOUCH or avg.MOUSE, createActionUp); 
+        self.player1Field.setEventHandler(avg.CURSORDOWN,avg.TOUCH | avg.MOUSE, createActionDown);
+        self.player1Field.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, createActionUp); 
         
 
         self.player2Field = avg.DivNode(id="player2Field", pos=(((util.width+util.middleLinewidth)/2),0), size=(((util.width-util.middleLinewidth)/2),util.height))
-        self.player2Field.setEventHandler(avg.CURSORDOWN,avg.TOUCH or avg.MOUSE, createActionDown);
-        self.player2Field.setEventHandler(avg.CURSORUP,avg.TOUCH or avg.MOUSE, createActionUp); 
+        self.player2Field.setEventHandler(avg.CURSORDOWN,avg.TOUCH | avg.MOUSE, createActionDown);
+        self.player2Field.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, createActionUp); 
     
         
         starPath = os.path.join(getMediaDir(__file__, "resources"), "labels/star.png")
@@ -863,7 +863,7 @@ class GeneaTD(gameapp.GameApp):
         
         self.homeBaseNode = avg.RectNode(id="team1BaseArea", fillopacity=0.3, strokewidth=0, pos=(0, util.menuAreaheight), fillcolor=self.team1.color, size=(util.basewidth, util.height-2*util.menuAreaheight))
 
-        self.homeBaseNode.setEventHandler(avg.CURSORDOWN,avg.TOUCH or avg.MOUSE,homeBaseTeam1Down)
+        self.homeBaseNode.setEventHandler(avg.CURSORDOWN,avg.TOUCH | avg.MOUSE,homeBaseTeam1Down)
         
         self.homeBaseImg = avg.ImageNode(href=os.path.join(getMediaDir(__file__, "resources"), "baseStoned2.png"), pos=(0, util.menuAreaheight), opacity=0.0, size = (util.basewidth, util.height-2*util.menuAreaheight))
         
@@ -885,7 +885,7 @@ class GeneaTD(gameapp.GameApp):
         
         self.homeBaseNode2 = avg.RectNode(id="team2BaseArea", fillopacity=0.3, strokewidth=0, pos=(util.width-util.basewidth,util.menuAreaheight), fillcolor=self.team2.color, size=(util.basewidth, util.height-2*util.menuAreaheight))
 
-        self.homeBaseNode2.setEventHandler(avg.CURSORDOWN,avg.TOUCH or avg.MOUSE,homeBaseTeam2Click)
+        self.homeBaseNode2.setEventHandler(avg.CURSORDOWN,avg.TOUCH | avg.MOUSE,homeBaseTeam2Click)
         
         self.homeBaseImg2 = avg.ImageNode(href=os.path.join(getMediaDir(__file__, "resources"), "baseStoned2.png"), pos=(util.width-util.basewidth,util.menuAreaheight), opacity=0.0, size = (util.basewidth, util.height-2*util.menuAreaheight))
 
@@ -908,22 +908,22 @@ class GeneaTD(gameapp.GameApp):
         self.player1OptionsLeftWizardBack = createButtonBackground((0,0))
         self.player1OptionsLeftWizard = createButton((util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "circleGood.png"))
          
-        self.player1OptionsLeftWizardBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(2)) 
-        self.player1OptionsLeftWizard.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(2)) 
+        self.player1OptionsLeftWizardBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(2)) 
+        self.player1OptionsLeftWizard.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(2)) 
 
  
         self.player1OptionsLeftScoutBack = createButtonBackground((util.sideBarheight,0))
         self.player1OptionsLeftScout = createButton((util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "triangleGood.png"))      
         
-        self.player1OptionsLeftScoutBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(1)) 
-        self.player1OptionsLeftScout.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(1)) 
+        self.player1OptionsLeftScoutBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(1)) 
+        self.player1OptionsLeftScout.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(1)) 
 
 
         self.player1OptionsLeftNormalBack = createButtonBackground((2*util.sideBarheight,0))
         self.player1OptionsLeftNormal = createButton((2*util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "squareGood.png"))      
   
-        self.player1OptionsLeftNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(0)) 
-        self.player1OptionsLeftNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(0)) 
+        self.player1OptionsLeftNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(0)) 
+        self.player1OptionsLeftNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer1(0)) 
   
         
         self.player1OptionsLeft.appendChild(self.player1OptionsLeftWizardBack)       
@@ -946,24 +946,24 @@ class GeneaTD(gameapp.GameApp):
         self.player1OptionsRightIndy = createButton((util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "fireball.png"))
                 
         
-        self.player1OptionsRightIndyBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(2)) 
-        self.player1OptionsRightIndy.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(2)) 
+        self.player1OptionsRightIndyBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(2)) 
+        self.player1OptionsRightIndy.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(2)) 
 
 
         self.player1OptionsRightIceBack = createButtonBackground((util.sideBarheight,0))
         self.player1OptionsRightIce = createButton((util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "iceball.png"))      
         
 
-        self.player1OptionsRightIceBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(1)) 
-        self.player1OptionsRightIce.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(1)) 
+        self.player1OptionsRightIceBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(1)) 
+        self.player1OptionsRightIce.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(1)) 
 
 
 
         self.player1OptionsRightNormalBack = createButtonBackground((2*util.sideBarheight,0))
         self.player1OptionsRightNormal = createButton((2*util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "blackball.png"))     
         
-        self.player1OptionsRightNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(0)) 
-        self.player1OptionsRightNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(0)) 
+        self.player1OptionsRightNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(0)) 
+        self.player1OptionsRightNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer1(0)) 
 
         self.player1OptionsRight.appendChild(self.player1OptionsRightIndyBack)      
         self.player1OptionsRight.appendChild(self.player1OptionsRightIceBack)       
@@ -988,22 +988,22 @@ class GeneaTD(gameapp.GameApp):
         self.player2OptionsLeftNormalBack = createButtonBackground((0,0))
         self.player2OptionsLeftNormal = createButton((util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "squareEvil.png"))      
         
-        self.player2OptionsLeftNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(0)) 
-        self.player2OptionsLeftNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(0)) 
+        self.player2OptionsLeftNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(0)) 
+        self.player2OptionsLeftNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(0)) 
        
 
         self.player2OptionsLeftScoutBack = createButtonBackground((util.sideBarheight,0))
         self.player2OptionsLeftScout = createButton((util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "triangleEvil.png"))      
         
-        self.player2OptionsLeftScoutBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(1)) 
-        self.player2OptionsLeftScout.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(1)) 
+        self.player2OptionsLeftScoutBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(1)) 
+        self.player2OptionsLeftScout.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(1)) 
  
 
         self.player2OptionsLeftWizardBack = createButtonBackground((2*util.sideBarheight,0))
         self.player2OptionsLeftWizard = createButton((2*util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "circleEvil.png"))
 
-        self.player2OptionsLeftWizardBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg. MOUSE, lambda event : self.clickMethodCreaturePlayer2(2)) 
-        self.player2OptionsLeftWizard.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(2)) 
+        self.player2OptionsLeftWizardBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(2)) 
+        self.player2OptionsLeftWizard.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodCreaturePlayer2(2)) 
                 
 
         self.player2OptionsLeft.appendChild(self.player2OptionsLeftNormalBack)
@@ -1025,24 +1025,24 @@ class GeneaTD(gameapp.GameApp):
         self.player2OptionsRightNormalBack = createButtonBackground((0,0))
         self.player2OptionsRightNormal = createButton((util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "blackball.png"))      
 
-        self.player2OptionsRightNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(0)) 
-        self.player2OptionsRightNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(0)) 
+        self.player2OptionsRightNormalBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(0)) 
+        self.player2OptionsRightNormal.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(0)) 
         
        
 
         self.player2OptionsRightIceBack = createButtonBackground((util.sideBarheight,0))
         self.player2OptionsRightIce = createButton((util.sideBarheight+util.imageMargin, util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "iceball.png"))      
         
-        self.player2OptionsRightIceBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(1)) 
-        self.player2OptionsRightIce.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(1)) 
+        self.player2OptionsRightIceBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(1)) 
+        self.player2OptionsRightIce.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(1)) 
  
 
         self.player2OptionsRightIndyBack = createButtonBackground((2*util.sideBarheight,0))
         self.player2OptionsRightIndy = createButton((2*util.sideBarheight+util.imageMargin,util.imageMargin), util.imageSize, os.path.join(getMediaDir(__file__, "resources"), "fireball.png"))
 
 
-        self.player2OptionsRightIndyBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(2)) 
-        self.player2OptionsRightIndy.setEventHandler(avg.CURSORDOWN, avg.TOUCH or avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(2)) 
+        self.player2OptionsRightIndyBack.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(2)) 
+        self.player2OptionsRightIndy.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event : self.clickMethodTowerPlayer2(2)) 
 
 
         self.player2OptionsRight.appendChild(self.player2OptionsRightNormalBack)                

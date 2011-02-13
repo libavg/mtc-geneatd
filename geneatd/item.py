@@ -138,9 +138,9 @@ class Item(object):
         self.team2 = team2
         self.setAppearance()
         self.game = game
-        self.node.setEventHandler(avg.CURSORDOWN,avg.TOUCH or avg.MOUSE, self._startDragging)
-        self.node.setEventHandler(avg.CURSORMOTION,avg.TOUCH or avg.MOUSE, self._doDragging)
-        self.node.setEventHandler(avg.CURSORUP,avg.TOUCH or avg.MOUSE, self._endDragging)
+        self.node.setEventHandler(avg.CURSORDOWN,avg.TOUCH | avg.MOUSE, self._startDragging)
+        self.node.setEventHandler(avg.CURSORMOTION,avg.TOUCH | avg.MOUSE, self._doDragging)
+        self.node.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, self._endDragging)
         self.itemBunker = None
         
         
