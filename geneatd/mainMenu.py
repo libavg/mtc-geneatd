@@ -795,7 +795,7 @@ class MainMenu(object):
         self.itemIMGLeft = avg.ImageNode(id="itemsLeft", sensitive = False, href = os.path.join(getMediaDir(__file__, "resources"), "labels/items.png"), size = (self.innerHelpDiv.size[0],util.height // 20*9), pos  = (util.width//24,util.height//25), opacity = 0.0, parent=self.innerHelpDivLeft)
         
                            
-        self.contentLeft = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width*0.55, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivLeft.size[0]-util.width*0.55)//2,util.height*0.07), parent=self.innerHelpDivLeft)
+        self.contentLeft = avg.WordsNode(font="DejaVu Sans", variant="Book", width = util.width*0.55, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(22,42), pos = ((self.innerHelpDivLeft.size[0]-util.width*0.55)//2,util.height*0.07), parent=self.innerHelpDivLeft)
         self.contentCenteredLeft = avg.WordsNode(font="DejaVu Sans", alignment="center", variant="Book", width = util.width // 5*3, justify = True, color = "FEFFFF", fontsize = util.convertFontSize(25,45), pos = ((self.innerHelpDivLeft.size[0]-util.width // 5*3)//2,util.height // 80), parent=self.innerHelpDivLeft)
 
         self.imageDivLeft = avg.DivNode(id="imageDivLeft", size = (util.height//8, util.height //8), pos = (self.innerHelpDiv.size[0]//2 - self.imageDiv.size.x//2,util.height//2), opacity = 0.0, parent=self.innerHelpDivLeft)
@@ -929,14 +929,31 @@ class MainMenu(object):
             itemIMG.opacity = 1.0
             itemIMG.href = os.path.join(getMediaDir(__file__, "resources"), "labels/items2.png")     
             
-        elif (helpCounter == 17):
-            content.text = "This game was created during a libavg seminar at Saarland University lead by Ulrich von Zadow and Johannes Schöning in 2010. "
-           
-            itemIMG.size = (self.innerHelpDiv.size[0]+util.width//15,util.height // 20*14)
-            itemIMG.pos  = (-util.width//30,util.height //27*3)
+            contentCentered.opacity = 0.0
 
-            itemIMG.opacity = 1.0
-            itemIMG.href = os.path.join(getMediaDir(__file__, "resources"), "labels/about3.png")     
+        elif (helpCounter == 17):
+            content.text = ""
+            contentCentered.opacity = 1.0
+            contentCentered.text = """This game was written by<br/><br/>
+                    <big>Frederic Kerber<br/>
+                    Pascal Lessel<br/>
+                    Michael Mauderer<br/>
+                    <br/></big>
+                    <small>
+                    Support:<br/>
+                    Ulrich von Zadow<br/>
+                    Johannes Schöning<br/>
+                    DFKI GmbH<br/>
+                    University of Saarland<br/></small>
+                    <br/>
+                    GeneaTD is based on libavg (www.libavg.de)<br/>"""
+            contentCentered.y = util.height*0.07
+           
+#            itemIMG.size = (self.innerHelpDiv.size[0]+util.width//15,util.height // 20*14)
+#            itemIMG.pos  = (-util.width//30,util.height //27*3)
+
+            itemIMG.opacity = 0.0
+#            itemIMG.href = os.path.join(getMediaDir(__file__, "resources"), "labels/about3.png")     
             
         elif (helpCounter == 18):
             content.text = "All sound and music files are taken from www.freesound.org"

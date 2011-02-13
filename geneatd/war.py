@@ -88,10 +88,7 @@ class GeneaTD(gameapp.GameApp):
         util.updateSizes(parentNode.size.x, parentNode.size.y)
         
         avg.WordsNode.addFontDir(getMediaDir(__file__, "fonts"))
-        parser = OptionParser()
-        parser.add_option("-m", "--nosound", action="store_true", dest="nosound")
-        (optionen, args) = parser.parse_args()
-        self.musicEnabled = not optionen.nosound
+        self.musicEnabled = True
         super(GeneaTD, self).__init__(parentNode)
 
 
