@@ -574,7 +574,7 @@ class MainMenu(object):
         Method that determines what happens on a click of the end button.
         """
         self.soundPlayer.playTune(buttonSound)
-        self.main.ownLeave()
+        self.main.quit()
         
    
    
