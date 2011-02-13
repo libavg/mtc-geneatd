@@ -971,7 +971,7 @@ class MainMenu(object):
             content.text = unicode("There are two hotkeys in the game. Pressing 'q' while fighting will immediately end the fight and pressing 'n' will mute the sound.")
 
             contentCentered.opacity = 1.0
-            contentCentered.text = unicode("For more information check out our web pages <br/><br/> www.geneatd.de <br/>  www.geneatd.de <br/><br/> or write us an e-mail: <br/><br/>info@geneatd.de")
+            contentCentered.text = unicode("For more information check out our web pages <br/><br/> www.geneatd.de <br/>  www.dfki.de/geneatd <br/><br/> or write us an e-mail: <br/><br/>info@geneatd.de")
             contentCentered.pos = (self.innerHelpDiv.size.x//2,self.innerHelpDiv.size.y -content.getMediaSize().y - contentCentered.getMediaSize().y)
 
             itemIMG.opacity = 0.0 
