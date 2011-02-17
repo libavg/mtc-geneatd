@@ -1116,7 +1116,7 @@ class GeneaTD(gameapp.GameApp):
 
 
     def showKeyboard(self):
-        
+        global actionLayer, activeCreatureLayer, inActiveCreatureLayer, creatureLayer
         self.itemBunker1Left.node.unlink(True)
         self.itemBunker1Right.node.unlink(True)
         self.itemBunker2Left.node.unlink(True)
