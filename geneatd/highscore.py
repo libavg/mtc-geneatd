@@ -119,7 +119,7 @@ class Highscore(object):
             
             backgroundRect = avg.RectNode(size=self.highscoreDiv.size, pos=(0,0), fillcolor="000000", fillopacity=0.8, color="000000")
             self.highscoreDiv.appendChild(backgroundRect)
-            text = avg.WordsNode(font="FairyDustB", color="FEFB00", fontsize=util.convertFontSize(100), text="No entries here", parent=self.highscoreDiv) 
+            text = avg.WordsNode(font="DejaVu Sans", color="FEFB00", fontsize=util.convertFontSize(100), text="No entries here", parent=self.highscoreDiv) 
 
             text.pos = ((util.width//10*8-text.getMediaSize()[0])//2, 0)
             
@@ -129,8 +129,8 @@ class Highscore(object):
             backgroundRect = avg.RectNode(size=(self.highscoreDiv.size.x,self.highscoreDiv.size.y*99//100), pos=(-util.width//200,0), fillcolor="000000", fillopacity=0.8, color="000000")
             self.highscoreDiv.appendChild(backgroundRect)
             for i, entry in enumerate(self.entries):
-                avg.WordsNode(font="FairyDustB", text=("%02i" % (i+1))+". "+unicode(entry[0]), color="FEFB00", fontsize=util.convertFontSize(40), pos=(0, i*util.height//12), parent=self.highscoreDiv)
-                avg.WordsNode(font="FairyDustB", text=str(entry[1]) +" ", color="FEFB00", fontsize=util.convertFontSize(40), pos=(util.width // 5*4, i*util.height//12), alignment="right", parent=self.highscoreDiv)
+                avg.WordsNode(font="DejaVu Sans", text=("%02i" % (i+1))+". "+unicode(entry[0]), color="FEFB00", fontsize=util.convertFontSize(40), pos=(0, i*util.height//12), parent=self.highscoreDiv)
+                avg.WordsNode(font="DejaVu Sans", text=str(entry[1]) +" ", color="FEFB00", fontsize=util.convertFontSize(40), pos=(util.width // 5*4, i*util.height//12), alignment="right", parent=self.highscoreDiv)
                 
 
             

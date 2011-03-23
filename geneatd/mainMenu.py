@@ -30,7 +30,7 @@ import time
 
 
 
-maxHelpCounter = 19
+maxHelpCounter = 18
 
 buttonSound = "soundfiles/sound_button.mp3"
 
@@ -693,8 +693,9 @@ class MainMenu(object):
         self.back.href = os.path.join(getMediaDir(__file__, "resources"), "labels/arrow.png")
         self.back.swapHref = os.path.join(getMediaDir(__file__, "resources"), "labels/arrowGlow.png")
         
-        self.text = avg.WordsNode(font="FairyDustB", color="FEFB00", fontsize=util.convertFontSize(80), text = "Max. minutes to play? ", parent=self.timeDiv)
-        self.text.pos = (util.width//2-(self.text.getMediaSize()[0])//2 +util.width//60,0)
+        self.text = avg.ImageNode(href=os.path.join(getMediaDir(__file__, "resources"), "labels/max.png"),  parent=self.timeDiv, size=(util.width//10*8, util.height//5)) 
+        self.text.pos = ((util.width-self.text.size.x)//2,util.height//20)
+        
 
         self.createTimeMenuButtons(self.timeDiv)
         
@@ -713,8 +714,8 @@ class MainMenu(object):
         self.back.href = os.path.join(getMediaDir(__file__, "resources"), "labels/arrow.png")
         self.back.swapHref = os.path.join(getMediaDir(__file__, "resources"), "labels/arrowGlow.png")
         
-        self.text = avg.WordsNode(font="FairyDustB", color="FEFB00", fontsize=util.convertFontSize(80), text = "Points to win? ", parent=self.pointDiv)
-        self.text.pos = (util.width//2-(self.text.getMediaSize()[0])//2 + util.width //60,0)
+        self.text = avg.ImageNode(href=os.path.join(getMediaDir(__file__, "resources"), "labels/pointsToWin.png"),  parent=self.pointDiv, size=(util.width//10*9, util.height//5)) 
+        self.text.pos = ((util.width-self.text.size.x)//2,util.height//20)
             
         self.createPointMenuButtons(self.pointDiv)  
        
@@ -747,8 +748,9 @@ class MainMenu(object):
         
         self.createHelpMenuButtons(self.helpDiv)
         
-        self.text = avg.WordsNode(font="FairyDustB", color="FEFB00", fontsize=util.convertFontSize(80, 100), text = "Help ( 0" + str(self.helpCounter) + "/" + str(maxHelpCounter) + " ) ", parent=self.helpDiv)
-        self.text.pos = (util.width//2-(self.text.getMediaSize()[0])//2+util.width//60,0)
+        #self.text = avg.WordsNode(font="DejaVu Sans", color="FEFB00", fontsize=util.convertFontSize(80, 100), text = "Help ( 0" + str(self.helpCounter) + "/" + str(maxHelpCounter) + " ) ", parent=self.helpDiv)
+        self.text = avg.ImageNode(href=os.path.join(getMediaDir(__file__, "resources"), "labels/help.png"),  parent=self.helpDiv, size=(util.width//3, util.height//8))
+        self.text.pos = (util.width//3,0)
 
         self.innerHelpDiv = avg.DivNode(size = (util.width//3*2, util.height //4*3), pos = (util.width//6,util.height//20*3), parent=self.helpDiv)
 
@@ -950,25 +952,10 @@ class MainMenu(object):
             contentCentered.pos = (self.innerHelpDiv.size.x//2,self.innerHelpDiv.size.y -content.getMediaSize().y - contentCentered.getMediaSize().y)
             contentCentered.y = util.height*0.07
            
-#            itemIMG.size = (self.innerHelpDiv.size[0]+util.width//15,util.height // 20*14)
-#            itemIMG.pos  = (-util.width//30,util.height //27*3)
 
             itemIMG.opacity = 0.0
-#            itemIMG.href = os.path.join(getMediaDir(__file__, "resources"), "labels/about3.png")     
             
         elif (helpCounter == 18):
-            content.text = "All sound and music files are taken from www.freesound.org"
-            
-            itemIMG.size = (self.innerHelpDiv.size[0]+util.width//15,util.height // 20*12)
-            itemIMG.pos  = (-util.width//30,util.height //27*3)
-
-            itemIMG.opacity = 1.0
-            itemIMG.href = os.path.join(getMediaDir(__file__, "resources"), "labels/contribution2.png")    
-            contentCentered.opacity = 0.0
-
-            
-        elif (helpCounter == 19):
-            
             content.text = unicode("There are two hotkeys in the game. Pressing 'q' while fighting will immediately end the fight and pressing 'n' will mute the sound.")
 
             contentCentered.opacity = 1.0
