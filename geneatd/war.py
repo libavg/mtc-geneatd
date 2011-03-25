@@ -84,7 +84,7 @@ class GeneaTD(gameapp.GameApp):
     multitouch=True
     
     def __init__(self, parentNode):
-        
+        g_player.setOGLOptions(False, False, True, 4)
         util.updateSizes(parentNode.size.x, parentNode.size.y)
         
         avg.WordsNode.addFontDir(getMediaDir(__file__, "fonts"))
