@@ -23,7 +23,7 @@ import math
 import util
 import os
 from libavg import *
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 
 class IceTower(Tower):

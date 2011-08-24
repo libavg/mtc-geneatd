@@ -21,7 +21,7 @@ from libavg import *
 import util
 import math
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class ExpBar(object):
     """

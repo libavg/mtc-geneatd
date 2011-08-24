@@ -16,7 +16,7 @@
 #
 #For more information contact the geneaTD team: info@geneatd.de
 #
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 from libavg import avg
 import os
 import math

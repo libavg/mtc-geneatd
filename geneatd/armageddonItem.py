@@ -22,7 +22,7 @@ from item import Item
 from creature import Creature
 import util
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class ArmageddonItem(Item):
     """

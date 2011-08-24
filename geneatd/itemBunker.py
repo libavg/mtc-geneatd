@@ -20,7 +20,7 @@
 from libavg import *
 import util
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class ItemBunker(object):
     """

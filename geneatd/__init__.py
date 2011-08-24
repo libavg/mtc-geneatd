@@ -1,7 +1,7 @@
 import os
 
 from war import GeneaTD
-from libavg.AVGAppUtil import getMediaDir, createImagePreviewNode
+from libavg.utils import getMediaDir, createImagePreviewNode
 
 __all__ = [ 'apps',]
 

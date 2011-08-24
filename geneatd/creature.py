@@ -22,7 +22,7 @@ import util
 import time
 from hp import HP
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 
 

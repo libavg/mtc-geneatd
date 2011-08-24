@@ -20,7 +20,7 @@
 from libavg import *
 import util
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 # time after which the item disappears
 disappearTime = 8000

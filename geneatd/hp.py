@@ -19,7 +19,7 @@
 
 from libavg import *
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class HP(object):
     

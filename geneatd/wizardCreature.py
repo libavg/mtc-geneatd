@@ -21,7 +21,7 @@ from libavg import *
 from creature import Creature
 import random
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 import util
 
 

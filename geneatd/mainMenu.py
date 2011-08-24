@@ -22,7 +22,7 @@
 from libavg import *
 import math
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 from highscore import Highscore
 import util
 import time

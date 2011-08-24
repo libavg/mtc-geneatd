@@ -24,7 +24,7 @@ import math
 from mainMenu import MainMenu
 import util
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 g_player = avg.Player.get()
 

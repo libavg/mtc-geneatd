@@ -18,7 +18,7 @@
 #
 
 from libavg import *
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 from creature import Creature
 import os
 import util

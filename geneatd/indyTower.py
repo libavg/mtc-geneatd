@@ -22,7 +22,7 @@ import math
 import os
 import util
 from libavg import *
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class IndyTower(Tower):
     """

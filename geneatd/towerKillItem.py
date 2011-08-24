@@ -22,7 +22,7 @@ from item import Item
 from tower import Tower
 import os
 import util
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class TowerKillItem(Item):
     """

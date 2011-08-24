@@ -19,7 +19,7 @@
 
 from item import Item
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 
 class PreventTowerBuildingItem(Item):
     """

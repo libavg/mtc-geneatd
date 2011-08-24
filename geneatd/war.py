@@ -45,7 +45,7 @@ import util
 import random
 import os
 import math
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 from optparse import OptionParser 
 
 

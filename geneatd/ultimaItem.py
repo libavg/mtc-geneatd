@@ -22,7 +22,7 @@ from item import Item
 from creature import Creature
 from tower import Tower
 import os
-from libavg.AVGAppUtil import getMediaDir
+from libavg.utils import getMediaDir
 import util
 
 class UltimaItem(Item):
