@@ -76,7 +76,7 @@ inActiveCreatureLayer = avg.DivNode(id="inActiveCreatureLayer", size=(util.width
 
 
 
-class GeneaTD(gameapp.GameApp):   
+class GeneaTD(avgapp.AVGApp):   
     """
     The main class.
     """
