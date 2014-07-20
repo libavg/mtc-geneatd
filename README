@@ -1,3 +1,11 @@
+GeneaTD
+========
+
+GeneaTD is a multi-touch tower defense game for two to four players. The goal is to earn points by increasing the number of creatures that reach your opponent's home base, whilst your opponent defends his area. This can be done by touching creatures, or by building towers and touching them again so that they explode and destroy the enemy creatures. During the game you earn points for building towers, collecting items and spawning or destroying creatures. After collecting enough special items you receive a 'level up' and can use new creatures, towers or skills. The game ends after a player reaches a set amount of points or after the time limit has been reached.
+
+Acknowledgements
+================
+
 We thank the creators of the different sound files:
 
 sound_item_preventcreaturebuilding.mp3
