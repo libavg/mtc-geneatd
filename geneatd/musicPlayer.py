@@ -63,7 +63,7 @@ class MusicPlayer(object):
         """
         if (self.enabled):
             self.musicPlayer.stop()
-            self.musicPlayer.setEOFCallback(self.noFunc)
+            self.musicPlayer.subscribe(SoundNode.END_OF_FILE, self.noFunc)
     
     def noFunc(self):
         pass
