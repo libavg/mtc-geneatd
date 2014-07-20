@@ -89,9 +89,9 @@ class MainMenu(object):
         node.swapHref = os.path.join(getMediaDir(__file__, "resources"), swapHref)
         node.pivot=(0,0)
         node.angle=angle
-        node.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, clickMethod)
-        node.setEventHandler(avg.CURSOROVER, avg.TOUCH | avg.MOUSE, lambda event : self.glow(event, node));
-        node.setEventHandler(avg.CURSOROUT, avg.TOUCH | avg.MOUSE, lambda event : self.glow(event, node));
+        node.subscribe(Node.CURSOR_DOWN, clickMethod)
+        node.subscribe(Node.CURSOR_OVER, lambda event: self.glow(event, node))
+        node.subscribe(Node.CURSOR_OUT, lambda event: self.glow(event, node))
 
     
     def initMainButtonsAndHeader(self, parentNode):
@@ -137,7 +137,7 @@ class MainMenu(object):
         """
         Initialize the buttons and the label of the points menu.
         """
-        self.back.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event: self.fromPointMenu(event, parentNode))
+        self.back.subscribe(Node.CURSOR_DOWN, lambda event: self.fromPointMenu(event, parentNode))
         self.back.href = os.path.join(getMediaDir(__file__, "resources"), "labels/arrow.png")
         self.back.swapHref = os.path.join(getMediaDir(__file__, "resources"), "labels/arrowGlow.png")
               
@@ -183,7 +183,7 @@ class MainMenu(object):
         """
         Initialize the buttons and the label of the time menu.
         """
-        self.back.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event: self.fromTimeMenu(event,parentNode))
+        self.back.subscribe(Node.CURSOR_DOWN, lambda event: self.fromTimeMenu(event,parentNode))
         self.letBackButtonAppear()
         
         yPos = util.height//2
@@ -217,7 +217,7 @@ class MainMenu(object):
         """
         Initialize the buttons for the help menu.
         """
-        self.back.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, lambda event: self.fromHelpMenu(event))
+        self.back.subscribe(Node.CURSOR_DOWN, lambda event: self.fromHelpMenu(event))
         self.letBackButtonAppear()
  
         self.hback = avg.ImageNode(id="ButtonHelpBack", opacity=1, parent=helpDiv)
@@ -725,7 +725,7 @@ class MainMenu(object):
         """
         Method that shows the score-menu.
         """
-        self.back.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, self.fromScoreMenu)
+        self.back.subscribe(Node.CURSOR_DOWN, self.fromScoreMenu)
         self.letBackButtonAppear()
         self.highscore.show(self.parentNode)  
         
@@ -813,9 +813,9 @@ class MainMenu(object):
         
  
         
-        self.dragDiv.setEventHandler(avg.CURSORDOWN,avg.TOUCH | avg.MOUSE, self._startDragging)
-        self.dragDiv.setEventHandler(avg.CURSORMOTION,avg.TOUCH | avg.MOUSE, self._doDragging)
-        self.dragDiv.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, self._endDragging)
+        self.dragDiv.subscribe(Node.CURSOR_DOWN, self._startDragging)
+        self.dragDiv.subscribe(Node.CURSOR_MOTION, self._doDragging)
+        self.dragDiv.subscribe(Node.CURSOR_UP, self._endDragging)
 
         
         self.displayText(self.content, self.contentCentered, self.imageDiv, self.itemIMG, self.helpCounter, self.imageOnBack)

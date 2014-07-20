@@ -50,7 +50,7 @@ class MusicPlayer(object):
 
             try:
                 if loopEnabled:
-                    self.musicPlayer.setEOFCallback(lambda: self._setLoop(name, path))
+                    self.musicPlayer.subscribe(SoundNode.END_OF_FILE, lambda: self._setLoop(name, path))
 
                 self.musicPlayer.play()
             except RuntimeError:

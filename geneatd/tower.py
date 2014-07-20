@@ -140,7 +140,7 @@ class Tower(object):
             Tower.tower1.append(self)
        
          
-        self.tower.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, self.towerExplosion)   
+        self.tower.subscribe(Node.CURSOR_DOWN, self.towerExplosion)   
         
         creatureLayer.appendChild(self.tower)
         layer.appendChild(self.towerDiv)
