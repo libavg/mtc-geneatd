@@ -220,10 +220,10 @@ class Creature(object):
         cid = id(self)
         self.creatureDiv = avg.DivNode(id = str(cid), size = util.creatureDivSize, pos = (pos.x-util.creatureDivSize[0]//2, pos.y-util.creatureDivSize[1]//2), parent=layer)
         
-        self.creatureDiv.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, self._mouseUp)
-        self.creatureDiv.setEventHandler(avg.CURSOROUT,avg.TOUCH | avg.MOUSE, self._mouseUp)
+        self.creatureDiv.subscribe(Node.CURSOR_UP, self._mouseUp)
+        self.creatureDiv.subscribe(Node.CURSOR_OUT, self._mouseUp)
 
-        self.creatureDiv.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, self.creatureCursorDown)
+        self.creatureDiv.subscribe(Node.CURSOR_DOWN, self.creatureCursorDown)
 
         self.team.score = self.team.score + 5
         

@@ -109,9 +109,9 @@ class Keyboard(object):
             
             self.back = avg.ImageNode(id="ButtonBack", opacity=1, href = os.path.join(getMediaDir(__file__, "resources"), "labels/arrow.png"), pos = (-400, util.buttonMarginBottom), size = util.helpAndCloseButtonSize, parent=highscoreDiv)
             self.back.swapHref = os.path.join(getMediaDir(__file__, "resources"), "labels/arrowGlow.png")
-            self.back.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, backClick);
-            self.back.setEventHandler(avg.CURSOROVER, avg.TOUCH | avg.MOUSE, lambda event : glow(event, self.back));
-            self.back.setEventHandler(avg.CURSOROUT, avg.TOUCH | avg.MOUSE, lambda event : glow(event, self.back));
+            self.back.subscribe(Node.CURSORDOWN, backClick)
+            self.back.subscribe(Node.CURSOROVER, lambda event : glow(event, self.back))
+            self.back.subscribe(Node.CURSOROUT, lambda event : glow(event, self.back))
            
             avg.LinearAnim(self.back, "pos", 1000, self.back.pos, (util.width // 600 , self.back.pos.y)).start()
             avg.fadeIn(highscoreDiv, 3000)
@@ -208,9 +208,9 @@ class Keyboard(object):
                 
                 self.back = avg.ImageNode(id="ButtonBack", opacity=1, href = os.path.join(getMediaDir(__file__, "resources"), "labels/arrow.png"), pos = (-400, util.buttonMarginBottom), size = util.helpAndCloseButtonSize, parent=highscoreDiv)
                 self.back.swapHref = os.path.join(getMediaDir(__file__, "resources"), "labels/arrowGlow.png")
-                self.back.setEventHandler(avg.CURSORDOWN, avg.TOUCH | avg.MOUSE, backClick);
-                self.back.setEventHandler(avg.CURSOROVER, avg.TOUCH | avg.MOUSE, lambda event : glow(event, self.back));
-                self.back.setEventHandler(avg.CURSOROUT, avg.TOUCH | avg.MOUSE, lambda event : glow(event, self.back));
+                self.back.subscribe(Node.CURSOR_DOWN, backClick)
+                self.back.subscribe(Node.CURSOR_OVER, lambda event : glow(event, self.back))
+                self.back.subscribe(Node.CURSOR_OUT, lambda event : glow(event, self.back))
                 
                 avg.LinearAnim(self.back, "pos", 1000, self.back.pos, (util.width // 600 , self.back.pos.y), False, None, lambda : self.parentNode.appendChild(highscoreDiv)).start()
                 avg.fadeIn(highscoreDiv, 3000)
@@ -286,7 +286,7 @@ class Keyboard(object):
             keyNodeDiv = avg.DivNode(pos=(x,y), parent=parentNode)
             keyNodeDiv.char = char
             keyNodeDiv.side = id
-            keyNodeDiv.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, lambda event : keyUp(keyNodeDiv.char, keyNodeDiv.side))
+            keyNodeDiv.subscribe(Node.CURSOR_UP, lambda event : keyUp(keyNodeDiv.char, keyNodeDiv.side))
             
             avg.RectNode(size=(util.keyHeight, util.keyHeight), pos=(0,0), parent=keyNodeDiv)
             
@@ -305,7 +305,7 @@ class Keyboard(object):
         def placeBackNode(parentNode, x, y, angle, id):
             keyNodeDiv = avg.DivNode(pos=(x,y), parent=parentNode)
             keyNodeDiv.side=id
-            keyNodeDiv.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, lambda event : keyUp("BACK", keyNodeDiv.side))
+            keyNodeDiv.subscribe(Node.CURSOR_UP, lambda event : keyUp("BACK", keyNodeDiv.side))
             
             avg.RectNode(size=(util.keyHeight, util.keyHeight), pos=(1,0), parent=keyNodeDiv)
             keyWordNode = avg.ImageNode(href=os.path.join(getMediaDir(__file__, "resources"), "keyArrow.png"), angle=angle, pivot=(0,0), parent=keyNodeDiv)
@@ -320,7 +320,7 @@ class Keyboard(object):
         def placeUpNode(parentNode, x, y, angle, id):
             keyNodeDiv = avg.DivNode(pos=(x,y), parent=parentNode)
             keyNodeDiv.side = id
-            keyNodeDiv.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, lambda event : shift(keyNodeDiv.side))
+            keyNodeDiv.subscribe(Node.CURSOR_UP, lambda event : shift(keyNodeDiv.side))
             
             keyNode = avg.RectNode(fillcolor="FFFFFF", fillopacity=0.6, size=(util.keyHeight, util.keyHeight), pos=(1,0), parent=keyNodeDiv)
             
@@ -339,7 +339,7 @@ class Keyboard(object):
         def placeenterNode(parentNode, x, y, angle, id):
             keyNodeDiv = avg.DivNode(pos=(x,y), parent=parentNode)
             keyNodeDiv.side = id
-            keyNodeDiv.setEventHandler(avg.CURSORUP,avg.TOUCH | avg.MOUSE, lambda event : enterUp(keyNodeDiv.side))
+            keyNodeDiv.subscribe(Node.CURSOR_UP, lambda event : enterUp(keyNodeDiv.side))
             
             avg.RectNode(size=(util.keyHeight, 2*util.keyHeight+6), pos=(1,0), parent=keyNodeDiv)
 
