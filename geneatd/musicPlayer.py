@@ -1,4 +1,4 @@
-#geneaTD - A multi-touch tower defense game.
+# geneaTD - A multi-touch tower defense game.
 #Copyright (C) 2010-2011 Frederic Kerber, Pascal Lessel, Michael Mauderer 
 #
 #This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ from libavg import *
 import os
 from libavg.utils import getMediaDir
 
+
 class MusicPlayer(object):
     """
     This class represents a music player.
@@ -36,38 +37,36 @@ class MusicPlayer(object):
         self.musicPlayer = avg.SoundNode(parent=parentNode)
         self.musicPlayer.volume = 1
         self.volume = 1
-       
-        
-                
-    def playTune(self, name,  loopEnabled=False, path=getMediaDir(__file__, "resources")):
+
+    def playTune(self, name, loopEnabled=False, path=getMediaDir(__file__, "resources")):
         """
         Plays a new tune.
         name: The reference to the new tune.
         path: The path.
         """
-        if (self.enabled):
+        if self.enabled:
             self.musicPlayer.stop()
             self.musicPlayer.href = os.path.join(path, name)
-           
+
             try:
-                if loopEnabled == True:
-                    self.musicPlayer.setEOFCallback(lambda:self._setLoop(name, path))
-                    
+                if loopEnabled:
+                    self.musicPlayer.setEOFCallback(lambda: self._setLoop(name, path))
+
                 self.musicPlayer.play()
             except RuntimeError:
                 pass
-            
+
     def stop(self):
         """
         Stops the playback.
         """
-        if (self.enabled):
+        if self.enabled:
             self.musicPlayer.stop()
             self.musicPlayer.subscribe(SoundNode.END_OF_FILE, self.noFunc)
-    
+
     def noFunc(self):
         pass
-    
+
     def _setLoop(self, name, path):
         """
         After playback has come to an end start again.
@@ -75,11 +74,10 @@ class MusicPlayer(object):
         path: The path.
         """
         self.playTune(name, path)
-        
-    
+
     def mute(self):
         """
-        A method that mute or unmute the sound, depending whether the sound is 
+        A method that mute or unmute the sound, depending whether the sound is
         """
         if self.musicPlayer.volume == 0:
             self.musicPlayer.volume = 1
