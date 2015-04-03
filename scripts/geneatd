@@ -19,6 +19,7 @@
 #
 
 import sys
+import libavg
 
 try:
     import geneatd
@@ -32,4 +33,4 @@ except ImportError:
         sys.exit(1)
 
 if __name__ == '__main__':
-    geneatd.GeneaTD.start()
+    libavg.app.App().run(geneatd.GeneaTD(), app_resolution='', app_fullscreen='true')

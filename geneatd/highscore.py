@@ -29,6 +29,7 @@ class Highscore(object):
     
     def __init__(self, path, player, length = 10):
    
+        self.highscoreDiv = None
         self._path = os.path.join(path,".geneatd")
         if not os.path.exists(self._path): 
             os.mkdir(self._path)
@@ -147,8 +148,9 @@ class Highscore(object):
         """
         Hides the highscore
         """
-        self.highscoreDiv.unlink(True)
-        self.highscoreDiv = None
+        if self.highscoreDiv:
+            self.highscoreDiv.unlink(True)
+            self.highscoreDiv = None
 
         
     def getLowestEntry(self):

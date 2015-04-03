@@ -76,20 +76,10 @@ inActiveCreatureLayer = avg.DivNode(id="inActiveCreatureLayer", size=(util.width
 
 
 
-class GeneaTD(avgapp.AVGApp):   
+class GeneaTD(app.MainDiv):
     """
     The main class.
     """
-    multitouch=True
-    
-    def __init__(self, parentNode):
-        util.updateSizes(parentNode.size.x, parentNode.size.y)
-        
-        avg.WordsNode.addFontDir(getMediaDir(__file__, "fonts"))
-        self.musicEnabled = True
-        super(GeneaTD, self).__init__(parentNode)
-
-
     def ownLeave(self):
         if standAlone:
             g_player.stop()
@@ -97,10 +87,15 @@ class GeneaTD(avgapp.AVGApp):
             util.clear()
             self.leave()
 
-    def init(self):
+    def onInit(self):
+        util.updateSizes(self.size.x, self.size.y)
+
+        avg.WordsNode.addFontDir(getMediaDir(__file__, "fonts"))
+        self.musicEnabled = True
+
         util.init()
         self._gameOver = True        
-        self.parentNode = avg.DivNode(size=(self._parentNode.size.x, self._parentNode.size.y), pos=(0,0), parent= self._parentNode)
+        self.parentNode = avg.DivNode(size=(self.size.x, self.size.y), pos=(0,0), parent= self)
 
         self.team1TowerBlock = False;
         self.team2TowerBlock = False;
@@ -115,8 +110,8 @@ class GeneaTD(avgapp.AVGApp):
         self.timerCreature1 = None
         self.timerCreature2 = None
         
-        self.soundPlayer = MusicPlayer(self._parentNode, self.musicEnabled)
-        self.musicPlayer = MusicPlayer(self._parentNode, self.musicEnabled)
+        self.soundPlayer = MusicPlayer(self, self.musicEnabled)
+        self.musicPlayer = MusicPlayer(self, self.musicEnabled)
         
         self._mm = MainMenu(self.parentNode, g_player, self)
         
