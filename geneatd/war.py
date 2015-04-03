@@ -114,6 +114,8 @@ class GeneaTD(app.MainDiv):
         self.musicPlayer = MusicPlayer(self, self.musicEnabled)
         
         self._mm = MainMenu(self.parentNode, g_player, self)
+
+        self.__setupMultitouch()
         
     def initialOption(self):
         """
@@ -1346,14 +1348,27 @@ class GeneaTD(app.MainDiv):
         avg.LinearAnim(self.victoryScoreLeft,"opacity", 9000, 0, 1).start()
         avg.LinearAnim(self.victoryScoreRight,"opacity", 9000, 0, 1, False, None, test).start()
 
-  
-        
-            
-        
-        
     def isGameOver(self):
         return self._gameOver
-            
+
+    def __setupMultitouch(self):
+        if app.instance.settings.getBoolean('multitouch_enabled'):
+            return
+
+        import platform
+
+        if platform.system() == 'Linux':
+            os.putenv('AVG_MULTITOUCH_DRIVER', 'XINPUT')
+        elif platform.system() == 'Windows':
+            os.putenv('AVG_MULTITOUCH_DRIVER', 'WIN7TOUCH')
+        else:
+            os.putenv('AVG_MULTITOUCH_DRIVER', 'TUIO')
+
+        try:
+            player.enableMultitouch()
+        except Exception, e:
+            os.putenv('AVG_MULTITOUCH_DRIVER', 'TUIO')
+            player.enableMultitouch()
            
   
 if __name__ == '__main__':
