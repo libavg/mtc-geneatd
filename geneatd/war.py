@@ -45,6 +45,7 @@ import util
 import random
 import os
 import math
+import functools
 from libavg.utils import getMediaDir
 
 
@@ -742,87 +743,109 @@ class GeneaTD(app.MainDiv):
                 else:
                     WizardCreature(g_player, self.team2, self.team1, event.pos, activeCreatureLayer, event.when, self, inActiveCreatureLayer, 2)
 
+
         def createActionDown(event):
             """
             Starts the tower creation animation.
             """
             global eventStartTimes
-            
-            
+
             if event.node.id == "player1Field":
                 if self.team1.checkBaseArea(event.pos.x, event.pos.y):
                     homeBaseTeam1Down(event)
-                    return;
+                    return
             
             if event.node.id == "player2Field":
                 if self.team2.checkBaseArea(event.pos.x, event.pos.y):
                     homeBaseTeam2Click(event)
-                    return;
-            
+                    return
+
+            end_anim_call_back = functools.partial(createActionUp,
+                                                   event.cursorid,
+                                                   event.node.id,
+                                                   event.pos,
+                                                   )
+
             if (event.node.id == "player1Field" and not self.team1TowerBlock and util.sideBarheight<event.pos.y<util.height-util.sideBarheight):
                 creationCircle = avg.CircleNode(fillopacity=0.3, strokewidth=0, pos=event.pos, parent=actionLayer)
                 
-                creationCircle.subscribe(Node.CURSOR_UP, createActionUp)
-                creationCircle.subscribe(Node.CURSOR_OUT, createActionUp)
+                creationCircle.subscribe(Node.CURSOR_UP, createActionUpWrapper)
+                creationCircle.subscribe(Node.CURSOR_OUT, createActionUpWrapper)
     
-                anim = avg.LinearAnim(creationCircle,"r", towerCreationTime, util.creationCircleRadius//6, util.creationCircleRadius, False, None, lambda : createActionUp(event))
+                anim = avg.LinearAnim(creationCircle,
+                                      "r",
+                                      towerCreationTime,
+                                      util.creationCircleRadius // 6,
+                                      util.creationCircleRadius,
+                                      False,
+                                      None,
+                                      end_anim_call_back,
+                                      )
                 anim.start()
-            
-                eventStartTimes[event.cursorid]=(anim, creationCircle)
+                eventStartTimes[event.cursorid] = (anim, creationCircle)
             
             if event.node.id == "player2Field" and not self.team2TowerBlock and util.sideBarheight<event.pos.y<util.height-util.sideBarheight:
-                
                 creationCircle = avg.CircleNode(fillopacity=0.3, strokewidth=0, pos=event.pos, parent=actionLayer)
-                creationCircle.subscribe(Node.CURSOR_UP, createActionUp)
-                creationCircle.subscribe(Node.CURSOR_OUT, createActionUp)
+
+                creationCircle.subscribe(Node.CURSOR_UP, createActionUpWrapper)
+                creationCircle.subscribe(Node.CURSOR_OUT, createActionUpWrapper)
     
-                anim = avg.LinearAnim(creationCircle,"r", towerCreationTime, util.creationCircleRadius // 6, util.creationCircleRadius, False, None, lambda : createActionUp(event))
+                anim = avg.LinearAnim(creationCircle,
+                                      "r",
+                                      towerCreationTime,
+                                      util.creationCircleRadius // 6,
+                                      util.creationCircleRadius,
+                                      False,
+                                      None,
+                                      end_anim_call_back,
+                                      )
                 anim.start()
-            
-                eventStartTimes[event.cursorid]=(anim, creationCircle)
-  
-            
-        def createActionUp(event):
+                eventStartTimes[event.cursorid] = (anim, creationCircle)
+
+
+        def createActionUp(cursorId, sourceId, pos):
             """
             Called if the tower creation circle generation is finished.
             If finished successful, a new tower is created. Otherwise an action will take place.
             """
-            if event.cursorid in eventStartTimes:
-                anim, circle = eventStartTimes[event.cursorid]
+            if cursorId in eventStartTimes:
+                anim, circle = eventStartTimes[cursorId]
                 if not anim.isRunning():
-                    
-                    team = self.team2
-                
-                    if event.node.id == "player1Field":
-                        team=self.team1
-                        
-                        if self.activeTowerPlayer1==0:
-                            Tower(team, event.pos, actionLayer, creatureLayer)
-                        elif self.activeTowerPlayer1==1:
-                            IceTower(team, event.pos, actionLayer, creatureLayer)
+
+                    if sourceId == "player1Field":
+                        team = self.team1
+                        if self.activeTowerPlayer1 == 0:
+                            Tower(team, pos, actionLayer, creatureLayer)
+                        elif self.activeTowerPlayer1 == 1:
+                            IceTower(team, pos, actionLayer,
+                                     creatureLayer)
                         else:
-                            IndyTower(team, event.pos, actionLayer,  creatureLayer)
-                            
+                            IndyTower(team, pos, actionLayer,
+                                      creatureLayer)
                     else:
-                        if self.activeTowerPlayer2==0:
-                            Tower(team, event.pos, actionLayer,  creatureLayer)
-                        elif self.activeTowerPlayer2==1:
-                            IceTower(team, event.pos, actionLayer,  creatureLayer)
+                        team = self.team2
+                        if self.activeTowerPlayer2 == 0:
+                            Tower(team, pos, actionLayer, creatureLayer)
+                        elif self.activeTowerPlayer2 == 1:
+                            IceTower(team, pos, actionLayer,
+                                     creatureLayer)
                         else:
-                            IndyTower(team, event.pos, actionLayer,  creatureLayer)
-                        
-                        
-                                
-                            
+                            IndyTower(team, pos, actionLayer,
+                                      creatureLayer)
                 else:
                     anim.setStopCallback(None)
                     anim.abort()
-                    
+
                 circle.unlink(True)
-                del eventStartTimes[event.cursorid]
-                   
-            
-        
+                del eventStartTimes[cursorId]
+
+
+        def createActionUpWrapper(event):
+            """
+            Wrapper for createActionUpAction.
+            Unpacks information from event and calls createActionUpAction
+            """
+            createActionUp(event.cursorid, event.node.id, event.pos)
 
         self.field = avg.RectNode(id="field", fillopacity=1, strokewidth=0, filltexhref=os.path.join(getMediaDir(__file__, "resources"), "backgroundHRes.jpg"), pos=(0,0), size=(util.width, util.height))
         
@@ -830,12 +853,12 @@ class GeneaTD(app.MainDiv):
         self.player1Field = avg.DivNode(id="player1Field", pos=(0,0), size=(((util.width-util.middleLinewidth)/2),util.height))
 
         self.player1Field.subscribe(Node.CURSOR_DOWN, createActionDown)
-        self.player1Field.subscribe(Node.CURSOR_UP, createActionUp) 
+        self.player1Field.subscribe(Node.CURSOR_UP, createActionUpWrapper)
         
 
         self.player2Field = avg.DivNode(id="player2Field", pos=(((util.width+util.middleLinewidth)/2),0), size=(((util.width-util.middleLinewidth)/2),util.height))
         self.player2Field.subscribe(Node.CURSOR_DOWN, createActionDown)
-        self.player2Field.subscribe(Node.CURSOR_UP, createActionUp)
+        self.player2Field.subscribe(Node.CURSOR_UP, createActionUpWrapper)
     
         
         starPath = os.path.join(getMediaDir(__file__, "resources"), "labels/star.png")
