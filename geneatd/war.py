@@ -1366,9 +1366,8 @@ class GeneaTD(app.MainDiv):
 
         try:
             player.enableMultitouch()
-        except Exception, e:
-            os.putenv('AVG_MULTITOUCH_DRIVER', 'TUIO')
-            player.enableMultitouch()
+        except Exception as e:
+            logger.warning('{}'.format(e))
            
   
 if __name__ == '__main__':
